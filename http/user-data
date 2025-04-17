@@ -1,0 +1,39 @@
+#cloud-config
+autoinstall:
+  version: 1
+  locale: en_US.UTF-8
+  refresh-installer:
+      update: yes
+  keyboard:
+      layout: us
+  network:
+      network:
+          version: 2
+          ethernets:
+              enp0s3:
+                 dhcp4: yes
+              eth0:
+                 dhcp4: yes
+  apt:
+      primary:
+          - arches: [default]
+            uri: http://archive.ubuntu.com/ubuntu/
+  identity:
+      username: ubuntu
+      hostname: cda.igacademy
+      password: "$6$CTWigxJwoTwORsG1$5WfTrplgJ4Qui9tZ3qZjrAbpmM9eCCX31LkGVdZOiQyoWFR8XmePggSnI83OEeWe6UwQrThnex.P6rCXDTLA30"
+  ssh:
+      install-server: yes
+      authorized-keys: []
+      allow-pw: yes
+  user-data:
+      disable_root: false
+  packages:
+      - ca-certificates
+      - cloud-guest-utils
+      - cloud-init
+      - curl
+      - iproute2
+      - openssh-server
+      - python3
+      - sudo
